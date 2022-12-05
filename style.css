@@ -1,0 +1,41 @@
+.css-h9oeas {
+	--blur: 0; // Set to 1 to enable. Processor intensive.
+	--color: white;
+	--world-color: white;
+	--offset: 0.366667;
+	--size: 20vmin;
+	--duration: 3s;
+	--travel: 75vmin;
+	--ease: cubic-bezier(0.366667, 0, 0.633333, 1);
+	background: var(--world-color);
+	background-image: linear-gradient(var(--world-color), #000 60%);
+	background-blend-mode: screen;
+	margin: 0;
+	overflow: hidden;
+	height: 100vh;
+	display: grid;
+	justify-items: center;
+	align-items: center;
+	perspective: 100vw;
+	transform-style: preserve-3d;
+	font-family: "Cursive", Copperplate, Fantasy;
+
+}
+.css-17eq0hr {
+	background-color: DimGrey;
+	color: white;
+	font-family: Lato, sans-serif;
+	width: 250px;
+	display: block;
+    	height: 100%;
+    	max-width: 80%;
+    	overflow-y: auto;
+    	position: fixed;
+	z-index: 70;
+	
+
+}
+
+.stButton>button {
+    color: #666;
+}
