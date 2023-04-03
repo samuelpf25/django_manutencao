@@ -116,7 +116,8 @@ if (pg=='Edição individual'):
                 telefone.append(df['Telefone'][dic])
                 predio.append(df['Prédio'][dic])
                 sala.append(df['Sala/Local'][dic])
-                data.append(df['DATA'][dic])
+                data.append(df['DATASOL'][dic])
+                
                 observacao.append(df['Descrição sucinta'][dic])
                 os.append(df['Ordem de Serviço'][dic])
                 obsemail.append(df['Observação p/ Solicitante'][dic])
@@ -133,7 +134,7 @@ if (pg=='Edição individual'):
                 telefone.append(df['Telefone'][dic])
                 predio.append(df['Prédio'][dic])
                 sala.append(df['Sala/Local'][dic])
-                data.append(df['DATA'][dic])
+                data.append(df['DATASOL'][dic])
                 observacao.append(df['Descrição sucinta'][dic])
                 os.append(df['Ordem de Serviço'][dic])
                 obsemail.append(df['Observação p/ Solicitante'][dic])
@@ -280,7 +281,7 @@ elif pg=='Edição em Lote':
                 telefone.append(df['Telefone'][dic])
                 predio.append(df['Prédio'][dic])
                 sala.append(df['Sala/Local'][dic])
-                data.append(df['DATA'][dic])
+                data.append(df['DATASOL'][dic])
                 observacao.append(df['Descrição sucinta'][dic])
                 os.append(df['Ordem de Serviço'][dic])
                 obsemail.append(df['Observação p/ Solicitante'][dic])
@@ -294,7 +295,7 @@ elif pg=='Edição em Lote':
                 telefone.append(df['Telefone'][dic])
                 predio.append(df['Prédio'][dic])
                 sala.append(df['Sala/Local'][dic])
-                data.append(df['DATA'][dic])
+                data.append(df['DATASOL'][dic])
                 observacao.append(df['Descrição sucinta'][dic])
                 os.append(df['Ordem de Serviço'][dic])
                 obsemail.append(df['Observação p/ Solicitante'][dic])
@@ -305,7 +306,7 @@ elif pg=='Edição em Lote':
 
     selecionado = st.multiselect('Nº da solicitação:',n_solicitacao,n_solicitacao)
     filtro=selecionado
-    dados1 = df[['Área de Manutenção','Prédio', 'DATA', 'Ordem de Serviço','Status','Código da UFT']]
+    dados1 = df[['Área de Manutenção','Prédio', 'DATASOL', 'Ordem de Serviço','Status','Código da UFT']]
     filtrar = dados1['Código da UFT'].isin(filtro)
     #print(dados1[filtrar]['Ordem de Serviço'].value_counts())
     #print(dados1[filtrar]['Ordem de Serviço'].value_counts().values)
@@ -400,7 +401,7 @@ elif pg=='Consulta':
             telefone.append(df['Telefone'][dic])
             predio.append(df['Prédio'][dic])
             sala.append(df['Sala/Local'][dic])
-            data.append(df['DATA'][dic])
+            data.append(df['DATASOL'][dic])
             observacao.append(df['Descrição sucinta'][dic])
             os.append(df['Ordem de Serviço'][dic])
             obsemail.append(df['Observação p/ Solicitante'][dic])
@@ -409,7 +410,7 @@ elif pg=='Consulta':
 
     st.markdown(cabecalho,unsafe_allow_html=True)
     st.subheader(pg)
-    titulos=['Carimbo de data/hora','Endereço de e-mail','Nome do solicitante','Área de Manutenção','Descrição sucinta','Prédio','Sala/Local','Telefone','DATA','Ordem de Serviço','Status','Observação p/ Solicitante','Observação Interna','Código da UFT']
+    titulos=['Carimbo de data/hora','Endereço de e-mail','Nome do solicitante','Área de Manutenção','Descrição sucinta','Prédio','Sala/Local','Telefone','DATASOL','Ordem de Serviço','Status','Observação p/ Solicitante','Observação Interna','Código da UFT']
     with st.form(key='form1'):
         texto = st.text_input('Texto na descrição: ')
         col1,col2=st.columns(2)
@@ -424,9 +425,9 @@ elif pg=='Consulta':
         filtro_data=col1.selectbox('Filtrar por Data:',valor)
         if (filtro_data!=''):
             if (len(filtrar)>0):
-                filtrar=filtrar & dados['DATA'].isin([filtro_data])
+                filtrar=filtrar & dados['DATASOL'].isin([filtro_data])
             else:
-                filtrar = dados['DATA'].isin([filtro_data])
+                filtrar = dados['DATASOL'].isin([filtro_data])
 
         valor=os
         valor= list(dict.fromkeys(valor)) #removendo valores duplicados
