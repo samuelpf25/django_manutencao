@@ -436,7 +436,7 @@ elif pg == 'Consulta':
                'Descrição sucinta', 'Prédio', 'Sala/Local', 'Telefone', 'DATASOL', 'Ordem de Serviço', 'Status',
                'Observação p/ Solicitante', 'Observação Interna', 'Código da UFT']
     with st.form(key='form1'):
-        texto = st.text_input('Texto na descrição: ')
+        texto = st.text_input('Busca por argumento em qualquer lugar: ')
         col1, col2 = st.columns(2)
         col3, col4 = st.columns(2)
         col5, col6 = st.columns(2)
@@ -517,6 +517,18 @@ elif pg == 'Consulta':
         # if(len(filtrar)>0):
         if (texto != ''):
             dad = dados[filtrar][dados['Descrição sucinta'].str.contains(texto, na=False)]
+            dad += dados[filtrar][dados['Nome do solicitante'].str.contains(texto, na=False)]
+            dad += dados[filtrar][dados['Endereço de e-mail'].str.contains(texto, na=False)]
+            dad += dados[filtrar][dados['Carimbo de data/hora'].str.contains(texto, na=False)]
+            dad += dados[filtrar][dados['Área de Manutenção'].str.contains(texto, na=False)]
+            dad += dados[filtrar][dados['Prédio'].str.contains(texto, na=False)]
+            dad += dados[filtrar][dados['Sala/Local'].str.contains(texto, na=False)]
+            dad += dados[filtrar][dados['Telefone'].str.contains(texto, na=False)]
+            dad += dados[filtrar][dados['Ordem de Serviço'].str.contains(texto, na=False)]
+            dad += dados[filtrar][dados['Status'].str.contains(texto, na=False)]
+            dad += dados[filtrar][dados['Observação p/ Solicitante'].str.contains(texto, na=False)]
+            dad += dados[filtrar][dados['Observação Interna'].str.contains(texto, na=False)]
+            
         else:
             dad = dados[filtrar]
         st.dataframe(dad)  # dados[filtrar].head()
