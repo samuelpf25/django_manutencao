@@ -1,4 +1,4 @@
-# última edição 31/08/2023
+# última edição 06/11/2023
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import streamlit as st
@@ -516,19 +516,20 @@ elif pg == 'Consulta':
         # print(filtrar)
         # if(len(filtrar)>0):
         if (texto != ''):
-            dad = dados[filtrar][dados['Descrição sucinta'].str.contains(texto, na=False)]
-            dad += dados[filtrar][dados['Nome do solicitante'].str.contains(texto, na=False)]
-            dad += dados[filtrar][dados['Endereço de e-mail'].str.contains(texto, na=False)]
-            dad += dados[filtrar][dados['Carimbo de data/hora'].str.contains(texto, na=False)]
-            dad += dados[filtrar][dados['Área de Manutenção'].str.contains(texto, na=False)]
-            dad += dados[filtrar][dados['Prédio'].str.contains(texto, na=False)]
-            dad += dados[filtrar][dados['Sala/Local'].str.contains(texto, na=False)]
-            dad += dados[filtrar][dados['Telefone'].str.contains(texto, na=False)]
-            dad += dados[filtrar][dados['Ordem de Serviço'].str.contains(texto, na=False)]
-            dad += dados[filtrar][dados['Status'].str.contains(texto, na=False)]
-            dad += dados[filtrar][dados['Observação p/ Solicitante'].str.contains(texto, na=False)]
-            dad += dados[filtrar][dados['Observação Interna'].str.contains(texto, na=False)]
+            filtrar = filtrar + list(filter(lambda x: any(substring in x for substring in [texto]), ['Nome do solicitante']))
+            filtrar = filtrar + list(filter(lambda x: any(substring in x for substring in [texto]), ['Endereço de e-mail']))
+            filtrar = filtrar + list(filter(lambda x: any(substring in x for substring in [texto]), ['Carimbo de data/hora']))
+            filtrar = filtrar + list(filter(lambda x: any(substring in x for substring in [texto]), ['Área de Manutenção']))
+            filtrar = filtrar + list(filter(lambda x: any(substring in x for substring in [texto]), ['Prédio']))
+            filtrar = filtrar + list(filter(lambda x: any(substring in x for substring in [texto]), ['Sala/Local']))
+            filtrar = filtrar + list(filter(lambda x: any(substring in x for substring in [texto]), ['Telefone']))
+            filtrar = filtrar + list(filter(lambda x: any(substring in x for substring in [texto]), ['Ordem de Serviço']))
+            filtrar = filtrar + list(filter(lambda x: any(substring in x for substring in [texto]), ['Status']))
+            filtrar = filtrar + list(filter(lambda x: any(substring in x for substring in [texto]), ['Observação p/ Solicitante']))
+            filtrar = filtrar + list(filter(lambda x: any(substring in x for substring in [texto]), ['Observação Interna']))
             
+            dad = dados[filtrar][dados['Descrição sucinta'].str.contains(texto, na=False)]
+                       
         else:
             dad = dados[filtrar]
         st.dataframe(dad)  # dados[filtrar].head()
