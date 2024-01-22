@@ -569,7 +569,7 @@ elif pg == 'Consulta':
                 filtrar = filtrar + list(filter(lambda x: any(substring in x for substring in [texto]), ['Observação Interna']))
             except:
                 print('pulou')
-            dad = dados[filtrar][dados['Descrição sucinta'].str.contains(texto, na=False)]
+            dad = dados[filtrar][dados['Descrição sucinta','Carimbo de data/hora'].str.contains(texto, na=False)]
                        
         else:
             dad = dados[filtrar]
