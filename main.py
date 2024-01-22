@@ -516,18 +516,59 @@ elif pg == 'Consulta':
         # print(filtrar)
         # if(len(filtrar)>0):
         if (texto != ''):
-            filtrar = filtrar + list(filter(lambda x: any(substring in x for substring in [texto]), ['Nome do solicitante']))
-            filtrar = filtrar + list(filter(lambda x: any(substring in x for substring in [texto]), ['Endereço de e-mail']))
-            filtrar = filtrar + list(filter(lambda x: any(substring in x for substring in [texto]), ['Carimbo de data/hora']))
-            filtrar = filtrar + list(filter(lambda x: any(substring in x for substring in [texto]), ['Área de Manutenção']))
-            filtrar = filtrar + list(filter(lambda x: any(substring in x for substring in [texto]), ['Prédio']))
-            filtrar = filtrar + list(filter(lambda x: any(substring in x for substring in [texto]), ['Sala/Local']))
-            filtrar = filtrar + list(filter(lambda x: any(substring in x for substring in [texto]), ['Telefone']))
-            filtrar = filtrar + list(filter(lambda x: any(substring in x for substring in [texto]), ['Ordem de Serviço']))
-            filtrar = filtrar + list(filter(lambda x: any(substring in x for substring in [texto]), ['Status']))
-            filtrar = filtrar + list(filter(lambda x: any(substring in x for substring in [texto]), ['Observação p/ Solicitante']))
-            filtrar = filtrar + list(filter(lambda x: any(substring in x for substring in [texto]), ['Observação Interna']))
+            try:
+                filtrar = filtrar + list(filter(lambda x: any(substring in x for substring in [texto]), ['Nome do solicitante']))
+            except:
+                print('pulou')
+                
+            try:    
+                filtrar = filtrar + list(filter(lambda x: any(substring in x for substring in [texto]), ['Endereço de e-mail']))
+            except:
+                print('pulou')    
+
+            try:
+                filtrar = filtrar + list(filter(lambda x: any(substring in x for substring in [texto]), ['Carimbo de data/hora']))
+            except:
+                print('pulou')
             
+            try:
+                filtrar = filtrar + list(filter(lambda x: any(substring in x for substring in [texto]), ['Área de Manutenção']))
+            except:
+                print('pulou')
+            
+            try:
+                filtrar = filtrar + list(filter(lambda x: any(substring in x for substring in [texto]), ['Prédio']))
+            except:
+                print('pulou')
+            
+            try:
+                filtrar = filtrar + list(filter(lambda x: any(substring in x for substring in [texto]), ['Sala/Local']))
+            except:
+                print('pulou')
+            
+            try:
+                filtrar = filtrar + list(filter(lambda x: any(substring in x for substring in [texto]), ['Telefone']))
+            except:
+                print('pulou')
+            
+            try:
+                filtrar = filtrar + list(filter(lambda x: any(substring in x for substring in [texto]), ['Ordem de Serviço']))
+            except:
+                print('pulou')
+            
+            try:
+                filtrar = filtrar + list(filter(lambda x: any(substring in x for substring in [texto]), ['Status']))
+            except:
+                print('pulou')
+            try:
+                filtrar = filtrar + list(filter(lambda x: any(substring in x for substring in [texto]), ['Observação p/ Solicitante']))
+            except:
+                print('pulou')
+            
+            try:
+                filtrar = filtrar + list(filter(lambda x: any(substring in x for substring in [texto]), ['Observação Interna']))
+            except:
+                print('pulou')
             dad = dados[filtrar][dados['Descrição sucinta'].str.contains(texto, na=False)]
                        
         else:
