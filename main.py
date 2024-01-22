@@ -569,8 +569,9 @@ elif pg == 'Consulta':
                 filtrar = filtrar + list(filter(lambda x: any(substring in x for substring in [texto]), ['Observação Interna']))
             except:
                 print('pulou')
-            dad = dados[filtrar][dados['Descrição sucinta'].str.contains(texto, na=False)]
-            dad = dad + dados[filtrar][dados['Carimbo de data/hora'].str.contains(texto, na=False)]           
+            dad1 = dados[filtrar][dados['Descrição sucinta'].str.contains(texto, na=False)]
+            dad2 = dados[filtrar][dados['Carimbo de data/hora'].str.contains(texto, na=False)]
+            dad = pd.concat(dad1,dad2)  
         else:
             dad = dados[filtrar]
         st.dataframe(dad)  # dados[filtrar].head()
