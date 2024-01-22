@@ -571,7 +571,7 @@ elif pg == 'Consulta':
                 print('pulou')
             dad1 = dados[filtrar][dados['Descrição sucinta'].str.contains(texto, na=False)]
             dad2 = dados[filtrar][dados['Carimbo de data/hora'].str.contains(texto, na=False)]
-            dad = pd.concat(dad1,dad2)  
+            dad = dad1.append(dad2)
         else:
             dad = dados[filtrar]
         st.dataframe(dad)  # dados[filtrar].head()
