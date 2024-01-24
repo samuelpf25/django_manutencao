@@ -437,7 +437,7 @@ elif pg == 'Consulta':
                'Observação p/ Solicitante', 'Observação Interna', 'Código da UFT']
     with st.form(key='form1'):
         tit_plan = ['Nome do solicitante','Endereço de e-mail','Carimbo de data/hora','Área de Manutenção','Prédio','Sala/Local','Telefone','Ordem de Serviço','Status','Observação p/ Solicitante','Observação Interna','Descrição sucinta']
-        coluna_busca = st.select_box('Coluna para busca por argumento',tit_plan)
+        coluna_busca = st.selectbox('Coluna para busca por argumento',tit_plan)
         texto = st.text_input('Busca por argumento na coluna selecionada: ')
         col1, col2 = st.columns(2)
         col3, col4 = st.columns(2)
