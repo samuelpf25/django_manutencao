@@ -520,7 +520,7 @@ elif pg == 'Consulta':
             tit_plan = ['Nome do solicitante','Endereço de e-mail','Carimbo de data/hora','Área de Manutenção','Prédio','Sala/Local','Telefone','Ordem de Serviço','Status','Observação p/ Solicitante','Observação Interna','Descrição sucinta']
             for coluna in tit_plan:
                 try:
-                    if (len(filtrar) == 0):
+                    if (len(filtrar) > 0):
                         filtrar = filtrar + list(filter(lambda x: any(substring in x for substring in [texto]), [coluna]))
                     else:
                         filtrar = list(filter(lambda x: any(substring in x for substring in [texto]), [coluna]))
