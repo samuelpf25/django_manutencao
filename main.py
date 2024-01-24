@@ -436,7 +436,9 @@ elif pg == 'Consulta':
                'Descrição sucinta', 'Prédio', 'Sala/Local', 'Telefone', 'DATASOL', 'Ordem de Serviço', 'Status',
                'Observação p/ Solicitante', 'Observação Interna', 'Código da UFT']
     with st.form(key='form1'):
-        texto = st.text_input('Busca por argumento no campo descrição: ')
+        tit_plan = ['Nome do solicitante','Endereço de e-mail','Carimbo de data/hora','Área de Manutenção','Prédio','Sala/Local','Telefone','Ordem de Serviço','Status','Observação p/ Solicitante','Observação Interna','Descrição sucinta']
+        coluna_busca = st.select_box('Coluna para busca por argumento',tit_plan)
+        texto = st.text_input('Busca por argumento na coluna selecionada: ')
         col1, col2 = st.columns(2)
         col3, col4 = st.columns(2)
         col5, col6 = st.columns(2)
@@ -517,7 +519,7 @@ elif pg == 'Consulta':
         # if(len(filtrar)>0):
         if (texto != ''):
             
-            tit_plan = ['Nome do solicitante','Endereço de e-mail','Carimbo de data/hora','Área de Manutenção','Prédio','Sala/Local','Telefone','Ordem de Serviço','Status','Observação p/ Solicitante','Observação Interna','Descrição sucinta']
+            
             # for coluna in tit_plan:
             #     try:
             #         if (len(filtrar) > 0):
@@ -528,22 +530,8 @@ elif pg == 'Consulta':
             #         #filtrar = filtrar & dados[filtrar][dados[coluna].str.contains(texto, na=False)]
             #     except:
             #         print('pulou')          
-
             
-            dad1 = ''
-            prov = ''
-            for col_sel in tit_plan:
-                if dad1!='':
-                    prov = dad1 & dados[filtrar][dados[col_sel].str.contains(texto, na=False)]
-                    if len(prov)>0:
-                        dad1 = prov
-                else:
-                    prov=dados[filtrar][dados[col_sel].str.contains(texto, na=False)]
-                    if len(prov)>0:
-                        dad1=prov
-
-            
-            #dad1=dados[filtrar][dados['Descrição sucinta'].str.contains(texto, na=False)]        
+            dad1=dados[filtrar][dados[coluna_busca].str.contains(texto, na=False)]        
             #dad2 = dados[filtrar][dados['Carimbo de data/hora'].str.contains(texto, na=False)]
             dad = dad1
         else:
