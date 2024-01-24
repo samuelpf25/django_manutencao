@@ -517,13 +517,13 @@ elif pg == 'Consulta':
         # if(len(filtrar)>0):
         if (texto != ''):
             tit_plan = ['Nome do solicitante','Endereço de e-mail','Carimbo de data/hora','Área de Manutenção','Prédio','Sala/Local','Telefone','Ordem de Serviço','Status','Observação p/ Solicitante','Observação Interna','Descrição sucinta']
-            for coluna in tit_plan:
-                try:
-                    #filtrar = filtrar + list(filter(lambda x: any(substring in x for substring in [texto]), [coluna]))
-                    #filtrar = filtrar & dados[coluna].str.contains(texto, na=False)
-                    dados = dados & dados[filtrar][dados[coluna].str.contains(texto, na=False)]
-                except:
-                    print('pulou')                    
+            # for coluna in tit_plan:
+            #     try:
+            #         #filtrar = filtrar + list(filter(lambda x: any(substring in x for substring in [texto]), [coluna]))
+            #         #filtrar = filtrar & dados[coluna].str.contains(texto, na=False)
+            #         dados = dados & dados[filtrar][dados[coluna].str.contains(texto, na=False)]
+            #     except:
+            #         print('pulou')                    
             dad1 = dados#[filtrar][dados['Descrição sucinta'].str.contains(texto, na=False)]
             #dad2 = dados[filtrar][dados['Carimbo de data/hora'].str.contains(texto, na=False)]
             dad = dad1
