@@ -535,11 +535,11 @@ elif pg == 'Consulta':
             for col_sel in tit_plan:
                 if dad1!='':
                     prov = dad1 & dados[filtrar][dados[col_sel].str.contains(texto, na=False)]
-                    if !prov.empty:
+                    if len(prov)>0:
                         dad1 = prov
                 else:
                     prov=dados[filtrar][dados[col_sel].str.contains(texto, na=False)]
-                    if !prov.empty:
+                    if len(prov)>0:
                         dad1=prov
 
             
