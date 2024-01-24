@@ -516,7 +516,7 @@ elif pg == 'Consulta':
         # print(filtrar)
         # if(len(filtrar)>0):
         if (texto != ''):
-            dados = dados[dados.str.contains('|'.join(texto))]
+            dados[dados.str.contains('|'.join(texto))]
             # try:
             #     #filtrar = filtrar + list(filter(lambda x: any(substring in x for substring in [texto]), ['Nome do solicitante']))
             #     filtrar = filtrar & dados['Nome do solicitante'].isin([texto])
