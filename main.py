@@ -436,7 +436,7 @@ elif pg == 'Consulta':
                'Descrição sucinta', 'Prédio', 'Sala/Local', 'Telefone', 'DATASOL', 'Ordem de Serviço', 'Status',
                'Observação p/ Solicitante', 'Observação Interna', 'Código da UFT']
     with st.form(key='form1'):
-        texto = st.text_input('Busca por argumento em qualquer lugar: ')
+        texto = st.text_input('Busca por argumento no campo descrição: ')
         col1, col2 = st.columns(2)
         col3, col4 = st.columns(2)
         col5, col6 = st.columns(2)
@@ -527,13 +527,18 @@ elif pg == 'Consulta':
             #         #filtrar = filtrar & dados[coluna].str.contains(texto, na=False)
             #         #filtrar = filtrar & dados[filtrar][dados[coluna].str.contains(texto, na=False)]
             #     except:
-            #         print('pulou')           
-            dad1 = ''
-            for col_sel in tit_plan:
-                if dad1!='':
-                    dad1 = dad1 & dados[filtrar][dados[col_sel].str.contains(texto, na=False)]
-                else:
-                    dad1=dados[filtrar][dados[col_sel].str.contains(texto, na=False)]
+            #         print('pulou')          
+
+            
+            #dad1 = ''
+            # for col_sel in tit_plan:
+            #     if dad1!='':
+            #         dad1 = dad1 & dados[filtrar][dados[col_sel].str.contains(texto, na=False)]
+            #     else:
+            #         dad1=dados[filtrar][dados['Descrição sucinta'].str.contains(texto, na=False)]
+
+            
+            dad1=dados[filtrar][dados[col_sel].str.contains(texto, na=False)]        
             #dad2 = dados[filtrar][dados['Carimbo de data/hora'].str.contains(texto, na=False)]
             dad = dad1
         else:
