@@ -530,15 +530,20 @@ elif pg == 'Consulta':
             #         print('pulou')          
 
             
-            #dad1 = ''
-            # for col_sel in tit_plan:
-            #     if dad1!='':
-            #         dad1 = dad1 & dados[filtrar][dados[col_sel].str.contains(texto, na=False)]
-            #     else:
-            #         dad1=dados[filtrar][dados['Descrição sucinta'].str.contains(texto, na=False)]
+            dad1 = ''
+            prov = ''
+            for col_sel in tit_plan:
+                if dad1!='':
+                    prov = dad1 & dados[filtrar][dados[col_sel].str.contains(texto, na=False)]
+                    if !prov.empty:
+                        dad1 = prov
+                else:
+                    prov=dados[filtrar][dados[col_sel].str.contains(texto, na=False)]
+                    if !prov.empty:
+                        dad1=prov
 
             
-            dad1=dados[filtrar][dados[col_sel].str.contains(texto, na=False)]        
+            #dad1=dados[filtrar][dados['Descrição sucinta'].str.contains(texto, na=False)]        
             #dad2 = dados[filtrar][dados['Carimbo de data/hora'].str.contains(texto, na=False)]
             dad = dad1
         else:
