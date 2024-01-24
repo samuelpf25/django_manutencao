@@ -517,7 +517,7 @@ elif pg == 'Consulta':
         # filtrar=dados[titulo_coluna].isin([filtro])
         # print(filtrar)
         # if(len(filtrar)>0):
-        if (texto != ''):
+        if (texto != '' and coluna_busca!=''):
             
             
             # for coluna in tit_plan:
