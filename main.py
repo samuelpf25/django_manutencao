@@ -527,8 +527,13 @@ elif pg == 'Consulta':
             #         #filtrar = filtrar & dados[coluna].str.contains(texto, na=False)
             #         #filtrar = filtrar & dados[filtrar][dados[coluna].str.contains(texto, na=False)]
             #     except:
-            #         print('pulou')                    
-            dad1 = dados[filtrar][dados[col_sel for col_sel in tit_plan].str.contains(texto, na=False)]
+            #         print('pulou')           
+            dad1 = ''
+            for col_sel in tit_plan:
+                if dad1!='':
+                    dad1 = dad1 & dados[filtrar][dados[col_sel].str.contains(texto, na=False)]
+                else:
+                    dad1=dados[filtrar][dados[col_sel].str.contains(texto, na=False)]
             #dad2 = dados[filtrar][dados['Carimbo de data/hora'].str.contains(texto, na=False)]
             dad = dad1
         else:
