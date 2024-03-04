@@ -209,7 +209,8 @@ if (pg == 'Edição individual'):
                     
                     dados_hist = sheet_hist.get_all_records()  # Get a list of all records
                     #sheet.update_acell('AC1', selecionado)  # Numero UFT
-                    df_hist = pd.DataFrame(dados_hist['Nº OS'].isin(os[n]))
+                    filtro = dados_hist['Nº OS'].isin(os[n])
+                    df_hist = pd.DataFrame(dados_hist[filtro])
                     df_hist = df_hist.astype(str)
                     st.dataframe(df_hist[['DATA', 'HORA', 'Nº OS', 'STATUS', 'OBS']])
                 # st.success('Dados carregados!')
