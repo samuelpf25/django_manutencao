@@ -203,8 +203,8 @@ if (pg == 'Edição individual'):
             if bot == True:
                 with st.spinner('Carregando dados...'):
                     sheet.update_acell('AC1', selecionado)  # Numero UFT
-                     df = pd.DataFrame(dados['Ordem de Serviço'].isin(os[n]))
-                     df = df.astype(str)
+                    df = pd.DataFrame(dados['Ordem de Serviço'].isin(os[n]))
+                    df = df.astype(str)
                     st.dataframe(df[['DATA_HIST', 'HORA_HIST', 'STATUS_HIST', 'OBS_HIST']])
                 # st.success('Dados carregados!')
         with st.form(key='my_form'):
