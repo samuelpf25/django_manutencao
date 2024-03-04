@@ -1,4 +1,4 @@
-# última edição 24/01/2024
+# última edição 04/03/2024
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import streamlit as st
@@ -202,10 +202,16 @@ if (pg == 'Edição individual'):
             bot = st.button("Carregar Histórico")
             if bot == True:
                 with st.spinner('Carregando dados...'):
-                    sheet.update_acell('AC1', selecionado)  # Numero UFT
-                    df = pd.DataFrame(dados['Ordem de Serviço'].isin(os[n]))
-                    df = df.astype(str)
-                    st.dataframe(df[['DATA_HIST', 'HORA_HIST', 'STATUS_HIST', 'OBS_HIST']])
+                    
+                    sheet_hist = cliente.open_by_url(
+                        'https://docs.google.com/spreadsheets/d/1PhJXFOKdEAjcILQCDyJ-couaDM6EWBUXM1GVh-3gZWM/edit#gid=1866598290').get_worksheet(
+                        0)  # https://docs.google.com/spreadsheets/d/1PhJXFOKdEAjcILQCDyJ-couaDM6EWBUXM1GVh-3gZWM/edit#gid=96577098
+                    
+                    dados_hist = sheet_hist.get_all_records()  # Get a list of all records
+                    #sheet.update_acell('AC1', selecionado)  # Numero UFT
+                    df_hist = pd.DataFrame(dados_hist['Nº OS'].isin(os[n]))
+                    df_hist = df_hist.astype(str)
+                    st.dataframe(df_hist[['DATA', 'HORA', 'Nº OS', 'STATUS', 'OBS']])
                 # st.success('Dados carregados!')
         with st.form(key='my_form'):
             status = st.selectbox('Selecione o status:', status, index=indice)
