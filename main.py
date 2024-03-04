@@ -208,9 +208,13 @@ if (pg == 'Edição individual'):
                         0)  # https://docs.google.com/spreadsheets/d/1PhJXFOKdEAjcILQCDyJ-couaDM6EWBUXM1GVh-3gZWM/edit#gid=96577098
                     
                     dados_hist = sheet_hist.get_all_records()  # Get a list of all records
+                    df_hist = pd.DataFrame(dados_hist)
+                    df_hist = df_hist[['DATA', 'HORA', 'Nº OS', 'STATUS', 'OBS']]
+                    print(dados_hist)
                     #sheet.update_acell('AC1', selecionado)  # Numero UFT
-                    filtro = dados_hist['Nº OS'].isin(os[n])
-                    df_hist = pd.DataFrame(dados_hist[filtro])
+                    filtro = df_hist['Nº OS'].isin(os[n])
+                    #df_hist = pd.DataFrame(dados_hist[filtro])
+                    df_hist = df_hist[filtro]
                     df_hist = df_hist.astype(str)
                     st.dataframe(df_hist[['DATA', 'HORA', 'Nº OS', 'STATUS', 'OBS']])
                 # st.success('Dados carregados!')
