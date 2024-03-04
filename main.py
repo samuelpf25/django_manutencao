@@ -202,23 +202,25 @@ if (pg == 'Edição individual'):
             bot = st.button("Carregar Histórico")
             if bot == True:
                 with st.spinner('Carregando dados...'):
-                    
+
                     sheet_hist = cliente.open_by_url(
-                        'https://docs.google.com/spreadsheets/d/1PhJXFOKdEAjcILQCDyJ-couaDM6EWBUXM1GVh-3gZWM/edit#gid=1866598290').get_worksheet(
-                        0)  # https://docs.google.com/spreadsheets/d/1PhJXFOKdEAjcILQCDyJ-couaDM6EWBUXM1GVh-3gZWM/edit#gid=96577098
-                    
+                        'https://docs.google.com/spreadsheets/d/1PhJXFOKdEAjcILQCDyJ-couaDM6EWBUXM1GVh-3gZWM/edit#gid=1866598290').worksheet(
+                        'Linha do Tempo')  # https://docs.google.com/spreadsheets/d/1PhJXFOKdEAjcILQCDyJ-couaDM6EWBUXM1GVh-3gZWM/edit#gid=96577098
+
                     dados_hist = sheet_hist.get_all_records()  # Get a list of all records
                     df_hist = pd.DataFrame(dados_hist)
-                    print(df_hist)
+                    #print(df_hist)
                     dados_hist = df_hist[['DATA', 'HORA', 'Nº OS', 'STATUS', 'OBS']]
-                    print(dados_hist)
-                    #sheet.update_acell('AC1', selecionado)  # Numero UFT
-                    filtro = df_hist['Nº OS'].isin(os[n])
-                    #df_hist = pd.DataFrame(dados_hist[filtro])
+                    #print(dados_hist)
+                    # sheet.update_acell('AC1', selecionado)  # Numero UFT
+                    df_hist = df_hist.astype(str)
+                    print('OS Nº: ' + os[n])
+                    filtro = df_hist['Nº OS'].isin([str(os[n])])
+                    # df_hist = pd.DataFrame(dados_hist[filtro])
                     dad_h = dados_hist[filtro]
-                    
-                    #df_hist = df_hist.astype(str)
-                    st.dataframe(dad_h)
+
+                    # df_hist = df_hist.astype(str)
+                    st.dataframe(dad_h.astype(str))
                 # st.success('Dados carregados!')
         with st.form(key='my_form'):
             status = st.selectbox('Selecione o status:', status, index=indice)
@@ -249,7 +251,7 @@ if (pg == 'Edição individual'):
         if (botao == True and s == a):
             if (sheet.cell(celula.row, 20).value == n_solicitacao[n] and sheet.cell(celula.row,
                                                                                     20).value != 0 and sheet.cell(
-                    celula.row, 20).value != ''):
+                celula.row, 20).value != ''):
                 with st.spinner('Registrando dados...Aguarde!'):
                     st.markdown(infor + '<b>Registro efetuado!</b></p>', unsafe_allow_html=True)
 
@@ -449,8 +451,10 @@ elif pg == 'Consulta':
                'Descrição sucinta', 'Prédio', 'Sala/Local', 'Telefone', 'DATASOL', 'Ordem de Serviço', 'Status',
                'Observação p/ Solicitante', 'Observação Interna', 'Código da UFT']
     with st.form(key='form1'):
-        tit_plan = ['Nome do solicitante','Endereço de e-mail','Carimbo de data/hora','Área de Manutenção','Prédio','Sala/Local','Telefone','Ordem de Serviço','Status','Observação p/ Solicitante','Observação Interna','Descrição sucinta']
-        coluna_busca = st.selectbox('Coluna para busca por argumento',tit_plan)
+        tit_plan = ['Nome do solicitante', 'Endereço de e-mail', 'Carimbo de data/hora', 'Área de Manutenção', 'Prédio',
+                    'Sala/Local', 'Telefone', 'Ordem de Serviço', 'Status', 'Observação p/ Solicitante',
+                    'Observação Interna', 'Descrição sucinta']
+        coluna_busca = st.selectbox('Coluna para busca por argumento', tit_plan)
         texto = st.text_input('Busca por argumento na coluna selecionada: ')
         col1, col2 = st.columns(2)
         col3, col4 = st.columns(2)
@@ -530,9 +534,8 @@ elif pg == 'Consulta':
         # filtrar=dados[titulo_coluna].isin([filtro])
         # print(filtrar)
         # if(len(filtrar)>0):
-        if (texto != '' and coluna_busca!=''):
-            
-            
+        if (texto != '' and coluna_busca != ''):
+
             # for coluna in tit_plan:
             #     try:
             #         if (len(filtrar) > 0):
@@ -542,10 +545,10 @@ elif pg == 'Consulta':
             #         #filtrar = filtrar & dados[coluna].str.contains(texto, na=False)
             #         #filtrar = filtrar & dados[filtrar][dados[coluna].str.contains(texto, na=False)]
             #     except:
-            #         print('pulou')          
-            
-            dad1=dados[filtrar][dados[coluna_busca].str.contains(texto, na=False)]        
-            #dad2 = dados[filtrar][dados['Carimbo de data/hora'].str.contains(texto, na=False)]
+            #         print('pulou')
+
+            dad1 = dados[filtrar][dados[coluna_busca].str.contains(texto, na=False)]
+            # dad2 = dados[filtrar][dados['Carimbo de data/hora'].str.contains(texto, na=False)]
             dad = dad1
         else:
             dad = dados[filtrar]
