@@ -209,14 +209,15 @@ if (pg == 'Edição individual'):
                     
                     dados_hist = sheet_hist.get_all_records()  # Get a list of all records
                     df_hist = pd.DataFrame(dados_hist)
-                    df_hist = df_hist[['DATA', 'HORA', 'Nº OS', 'STATUS', 'OBS']]
+                    dados_hist = df_hist[['DATA', 'HORA', 'Nº OS', 'STATUS', 'OBS']]
                     print(dados_hist)
                     #sheet.update_acell('AC1', selecionado)  # Numero UFT
                     filtro = df_hist['Nº OS'].isin(os[n])
                     #df_hist = pd.DataFrame(dados_hist[filtro])
-                    df_hist = df_hist[filtro]
-                    df_hist = df_hist.astype(str)
-                    st.dataframe(df_hist[['DATA', 'HORA', 'Nº OS', 'STATUS', 'OBS']])
+                    dad_h = dados_hist[filtro]
+                    
+                    #df_hist = df_hist.astype(str)
+                    st.dataframe(dad_h)
                 # st.success('Dados carregados!')
         with st.form(key='my_form'):
             status = st.selectbox('Selecione o status:', status, index=indice)
