@@ -209,6 +209,7 @@ if (pg == 'Edição individual'):
                     
                     dados_hist = sheet_hist.get_all_records()  # Get a list of all records
                     df_hist = pd.DataFrame(dados_hist)
+                    print(df_hist)
                     dados_hist = df_hist[['DATA', 'HORA', 'Nº OS', 'STATUS', 'OBS']]
                     print(dados_hist)
                     #sheet.update_acell('AC1', selecionado)  # Numero UFT
